@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Multiweb Sinitro</title>
+</head>
+<body style="background-color: #e8f5e9;">
+
+	<p style="line-height: 1.6; font-family: Georgia, serif;"><h1>Multifunctionele website van Sinitro</h1>
+	
+	<p>Ik ga mijn uiterste best doen om ervoor te zorgen dat ik een beetje een functionele website kan maken, die wat inhoud biedt. Ik denk dat ik ga proberen om een korte uitleg te maken bij verschillende automodellen, met hun bijbehorende afbeeldingen en filmpjes.</P>
+		<br><br><br>
+		<h2>1. Bugatti Chiron</h2>
+
+		<img src="bugatti-chiron-1500.jpg"	 alt="Bugatti Chiron" width="600" height="400">
+
+		<em><h3>De Bugatti Chiron: Een symfonie van snelheid en stijl</h3></em>
+
+<p>Stel je voor: je staat oog in oog met een auto die eruitziet alsof hij uit de toekomst is geplukt, maar met het hart van een beest. Dat is de Bugatti Chiron — geen gewone hypercar, maar een rijdend kunstwerk dat de grenzen van techniek en design oprekt.</p>
+
+<h3>Motor & Prestaties</h3>
+
+<p>Onder de motorkap ligt een 8.0-liter W16-motor met vier turbo’s. Ja, vier. Samen pompen ze er een duizelingwekkende 1500 pk uit. Van 0 naar 100 km/u? In minder dan 2,5 seconden. De topsnelheid? Officieel begrensd op 420 km/u, maar de Chiron zou zelfs sneller kunnen als je hem loslaat op een lange rechte baan zonder limieten.
+
+Het geluid van de motor is geen gebrul — het is een oerkreet. Een mix van mechanische perfectie en brute kracht die je kippenvel bezorgt, zelfs als je alleen maar gas geeft in z’n vrij.</p>
+
+<h3>Design</h3>
+
+<p>De Chiron is niet alleen snel, hij is ook beeldschoon. Zijn vloeiende lijnen en agressieve houding maken hem tot een visueel spektakel. De iconische C-lijn aan de zijkant is niet alleen esthetisch, maar ook aerodynamisch slim ontworpen. De voorkant is breed en laag, met een hoefijzervormige grille die Bugatti’s erfgoed eert.
+
+Binnenin is het alsof je in een luxe jacht zit. Alles is met de hand afgewerkt: leer, aluminium, carbonfiber — geen plastic te bekennen. Het dashboard is minimalistisch, maar straalt klasse uit. Geen overbodige schermen, alleen pure focus op rijden.</p>
+
+<h3>Technologie</h3>
+
+<p>De Chiron is slim. Hij past zich aan aan je rijstijl, de weg en zelfs het weer. De actieve aerodynamica zorgt ervoor dat de auto stabiel blijft, zelfs bij krankzinnige snelheden. En de vierwielaandrijving geeft je grip alsof je op rails rijdt.</p>
+
+<h3>Exclusiviteit</h3>
+
+<p>Er zijn slechts 500 exemplaren van de Chiron gebouwd. Elke auto is uniek, afgestemd op de wensen van de eigenaar. De prijs? Rond de €2,5 miljoen, en dat is nog zonder de opties. Maar hé, als je een Chiron koopt, koop je geen auto — je koopt een legende.
+
+Voor het geval dat je geïnteresseerd bent in een in-depth review van dit monster, raad ik je <a href="https://www.youtube.com/watch?v=FR8iIMPNqYk&pp=ygUeYnVnYXR0aSBjaGlyb24gcmV2aWV3IGluIGRlcHRo">dit</a> filmpje aan.</p>
+
+<br><br>
+<h2>Hier is een exploit die je kunt gebruiken om devices op een netwerk te ontdekken/scannen btw</h2>
+
+<p>Geschreven in python, dit een exploit die apparaten onthuld op je netwerk. Het maakt gebruik van ARP, om verzoeken te versturen en vervolgens reacties van de apparaten te ontvangen, zo onthullen de apparaten zichzelf op het netwerk.<br>Als je deze exploit wilt gebruiken heb je scapy nodig. Indien je deze niet hebt op je apparaat, kun je hem installeren met bash: pip install scapy.
+
+<pre><code>
+from scapy.all import ARP, Ether, srp
+
+def scan_network(ip_range):
+    # Create an ARP request packet
+    arp = ARP(pdst=ip_range)
+    # Create an Ethernet frame
+    ether = Ether(dst="ff:ff:ff:ff:ff:ff")
+    # Stack them
+    packet = ether/arp
+
+    # Send the packet and capture the response
+    result = srp(packet, timeout=3, verbose=0)[0]
+
+    # Extract the IP and MAC addresses from the response
+    devices = []
+    for sent, received in result:
+        devices.append({'ip': received.psrc, 'mac': received.hwsrc})
+
+    return devices
+
+if __name__ == "__main__":
+    # Define the IP range to scan (e.g., '192.168.1.0/24' for a typical home network)
+    ip_range = '192.168.1.0/24'
+    devices = scan_network(ip_range)
+
+    print("Available devices in the network:")
+    for device in devices:
+        print(f"IP: {device['ip']} \t MAC: {device['mac']}")
+
+</code></pre>
+</p>
+
+	
+
+</body>
+</html>
